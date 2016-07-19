@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	<!-- 搜索 samples.webflow 包里的 @Component 注解，并将其部署到容器中 -->
-	<context:component-scan base-package="samples.webflow" />
+	<context:component-scan base-package="per.owisho.learn.springwebflow" />
 	<!-- 启用基于注解的配置 -->
 	<context:annotation-config />
 	<import resource="webmvc-config.xml" />

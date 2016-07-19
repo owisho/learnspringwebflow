@@ -3,10 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	<var name="mycart" class="per.owisho.learn.springwebflow.entity.Cart"></var>
+	<on-start>
+		<set name="conversationScope.cart" value="mycart"></set>
+	</on-start>
 	<view-state id="viewCart" view="viewCart">
+		<on-render>
+			<evaluate expression="productService.getProducts()" result="viewScope.products" />
+		</on-render>
 		<transition on="submit" to="viewOrder">
 		</transition>
+		<transition on="addToCart" to="addProductToCart">
+		</transition>
 	</view-state>
+	<subflow-state id="addProductToCart" subflow="addToCart">
+		<transition on="productAdded" to="viewCart" />
+	</subflow-state>
 	<view-state id="viewOrder" view="viewOrder">
 		<transition on="confirm" to="orderConfirmed">
 		</transition>
@@ -17,4 +29,7 @@
 	</view-state>
 	<end-state id="returnToIndex" view="externalRedirect:servletRelative:/index.jsp">
 	</end-state>
+	<global-transitions>
+    	<transition on="cancelShopping" to="returnToIndex"/>
+    </global-transitions>
 </flow>

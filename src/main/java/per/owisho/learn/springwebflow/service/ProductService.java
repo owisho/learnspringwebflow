@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import per.owisho.learn.springwebflow.entity.Product;
 
+@Service("productService")
 public class ProductService {
 
 	private Map<Integer,Product> products = new HashMap<Integer,Product>();
